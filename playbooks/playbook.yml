@@ -1,0 +1,10 @@
+---
+- name: Local Connection Test
+  hosts: localhost
+  vars_files:
+          - aws_keys.yml 
+  remote_user: dannyboy
+  tasks:
+   - name: Test ping
+     ping: 
+
