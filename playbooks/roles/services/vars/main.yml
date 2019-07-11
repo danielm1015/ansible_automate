@@ -1,2 +1,6 @@
 ---
 # vars file for services
+ec2_key_name: mykeypair
+ec2_region: us-east-2b
+ec2_instance_type: t2.micro
+ec2_image: 

@@ -1,2 +1,9 @@
 ---
 # tasks file for services
+- name: Creating EC2
+   ec2:
+         aws_access_key: "{{ aws_access_key }}"
+         aws_secret_key: "{{ aws_secret_key }}"
+         key_name: "{{ec2_key_name}}"
+         region: "{{ec2_region}}"
+         instance: "{{ec2_instance_type}}

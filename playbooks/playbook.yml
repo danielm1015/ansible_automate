@@ -1,10 +1,10 @@
 ---
-- name: Local Connection Test
-  hosts: localhost
+- name: Create EC2 instance
   vars_files:
           - aws_keys.yml 
-  remote_user: dannyboy
-  tasks:
-   - name: Test ping
-     ping: 
-
+  hosts: localhost
+  remote_user: ec2_user
+  roles:
+   - services
+     
+     
