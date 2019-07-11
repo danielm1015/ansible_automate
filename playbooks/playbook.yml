@@ -3,6 +3,7 @@
   vars_files:
           - aws_keys.yml 
   hosts: localhost
+  gather_facts: no
   remote_user: ec2_user
   roles:
    - services
