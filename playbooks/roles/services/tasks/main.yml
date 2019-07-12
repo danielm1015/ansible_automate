@@ -5,6 +5,44 @@
       aws_access_key: "{{aws_access_key}}"
       aws_secret_key: "{{aws_secret_key}}"
       key_name: "{{ec2_key_name}}"
+      wait: true
       region: "{{ec2_region}}"
       instance_type: "{{ec2_instance_type}}"
-      image:ami-0520e698dd500b1d1 
+      image: "{{ec2_image}}"
+      state:stopped
+  register: ec2
+# importing ssh role and passing registered var: ec2
+  include_role:
+    name: ssh_service
+    vars:
+        rolevar1: ec2
+# - name: Stop EC2 instance
+  # ec2:
+      # aws_access_key: "{{aws_access_key}}"
+      # aws_secret_key: "{{aws_secret_key}}"
+      # # key_name: "{{ec2_key_name}}"
+      # # wait: true
+      # region: "{{ec2_region}}"
+      # instance_ids: "{{ec2.instance_ids}}"
+      # state: stopped
+      
+ # Start instance
+ # - name: Start Instance
+   # ec2:
+      # aws_access_key: "{{aws_access_key}}"
+      # aws_secret_key: "{{aws_secret_key}}"
+      # key_name: "{{ec2_key_name}}"
+      # wait: true
+      # region: "{{ec2_region}}"
+      # instance_ids: "{{ec2.instance_ids}}"
+      # state: running
+       
+ # - name: Terminate Instance
+   # ec2:
+       # aws_access_key: "{{aws_access_key}}"
+       # aws_secret_key: "{{aws_secret_key}}"
+       # key_name: "{{ec2_key_name}}"
+       # wait: true
+       # region: "{{ec2_region}}"
+       # state: absent
+       # instance_ids: "{{ec2.instance_ids}}"

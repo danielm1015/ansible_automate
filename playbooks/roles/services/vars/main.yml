@@ -3,4 +3,6 @@
 ec2_key_name: mykeypair
 ec2_region: us-east-2
 ec2_instance_type: t2.micro
-ec2_image: 
+ec2_image: ami-0520e698dd500b1d1
+ec2_security_group: ec2securitygroup
+
