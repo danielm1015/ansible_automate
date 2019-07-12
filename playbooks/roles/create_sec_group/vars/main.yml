@@ -1,0 +1,4 @@
+---
+# vars file for create_sec_group
+ec2_security_group: ec2securitygroup
+ec2_region: us-east-2
