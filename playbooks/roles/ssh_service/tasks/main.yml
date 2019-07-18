@@ -6,11 +6,4 @@
     host: "{{item.public_ip}}"
     port: 22
     state: started
-  loop: "{{ec2.instances}}"
-  
-# - name: Include deploy
-  # include_role:
-    # name: deploy_apache
-  # vars:
-       # rolevar1: ec2
-    
+  loop: "{{ec2.instances}}" 
