@@ -1,25 +1,17 @@
 ---
 # tasks file for create_sec_group
 - name: Create a security group
-  group:
+  ec2_group:
     name: "{{ec2_security_group}}"
     description: The webservers security group
     region: "{{ec2_region}}"
     aws_access_key: "{{aws_access_key}}"
     aws_secret_key: "{{aws_secret_key}}"
     rules:
-      - proto: SSH
-        from_port: 22
-        to_port: 22
-        cidr_ip: 0.0.0.0/0
-      - proto: HTTP
-        from_port: 80
-        to_port: 80
-        cidr_ip: 0.0.0.0/0
-      - proto: HTTPS
-        from_port: 443
-        to_port: 443
-        cidr_ip: 0.0.0.0/0
+    - proto: tcp
+      ports:
+        - 22
+      cidr_ip: 0.0.0.0/0
     rules_egress:
-      - proto: all
-        cidr_ip: 0.0.0.0/0 
+    - proto: all
+      cidr_ip: 0.0.0.0/0 

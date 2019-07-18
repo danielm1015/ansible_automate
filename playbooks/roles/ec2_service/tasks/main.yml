@@ -7,6 +7,7 @@
       key_name: "{{ec2_key_name}}"
       wait: true
       region: "{{ec2_region}}"
+      group: "{{ec2_security_group}}"
       instance_type: "{{ec2_instance_type}}"
       image: "{{ec2_image}}"
   register: ec2
@@ -14,13 +15,25 @@
 - name: Add the newly created host so that we can further contact it
   add_host:
     name: "{{ item.public_ip }}"
-    groups: webservers
-  with_items: "{{ ec2.instances }}" 
+    groups: webserver
+  loop: "{{ ec2.instances }}"
+#   
+- name: Add tag to Instance(s)
+  ec2_tag:
+    aws_access_key: "{{ aws_access_key }}"
+    aws_secret_key: "{{ aws_secret_key }}"
+    resource: "{{ item.id }}"
+    region: "{{ec2_region}}"
+    state: "present"
+  loop: "{{ ec2.instances }}"
+  args:
+    tags:
+      Type: webserver  
 # importing ssh role
 # registered var: ec2 --> ssh role
 - name: Pass EC2 to SSH
   include_role:
-      name: ssh_service
+    name: ssh_service
   vars:
        rolevar1: ec2
 # - name: Stop EC2 instance
